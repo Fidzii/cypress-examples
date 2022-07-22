@@ -32,7 +32,7 @@ describe('Sign Up', () => {
     cy.contains('Signed in as ' + user.email);
   });
 
-  it.only('should not create a user when entering already existing credentials', () => {
+  it('should not create a user when entering already existing credentials', () => {
     cy.task('seed');
     cy.visit('/echo-chamber/sign-up');
     cy.get('[data-test="sign-up-email"]').type(existingUser.email);

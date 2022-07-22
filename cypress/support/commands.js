@@ -24,3 +24,21 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import 'cypress-file-upload';
+
+Cypress.Commands.add('signIn', (user) => {
+  cy.visit('/echo-chamber/sign-in');
+  cy.get('[data-test="sign-in-email"]').type(user.email);
+  cy.get('[data-test="sign-in-password"]').type(user.password);
+  cy.get('[data-test="sign-in-submit"]').click();
+});
+
+Cypress.Commands.add('signUp', (user) => {
+  cy.visit('/echo-chamber/sign-up');
+  cy.get('[data-test="sign-up-email"]').type(user.email);
+  cy.get('[data-test="sign-up-password"]').type(user.password);
+  cy.get('[data-test="sign-up-submit"]').click();
+});
+
+Cypress.Commands.add('getData', (attr) => {
+  return cy.get(`[data-test="${attr}"]`);
+});
